@@ -5,8 +5,8 @@ exports.getBootcamps = (req, res, next) => {
   res.status(200).json({ success: true, msg: "Show all bootcamps" })
 }
 
-// @description     GET single bootcamps
-// @route           GET /api/v1/bootcamps/:id
+// @description     GET single bootcamp
+// @route           GET /api/v1/bootcamp/:id
 // @access          Public
 exports.getBootcamp = (req, res, next) => {
   res
@@ -22,7 +22,7 @@ exports.createBootcamp = (req, res, next) => {
 }
 
 // @description     Update bootcamp
-// @route           PUT /api/v1/bootcamps
+// @route           PUT /api/v1/bootcamp
 // @access          Private
 exports.updateBootcamp = (req, res, next) => {
   res
@@ -31,7 +31,7 @@ exports.updateBootcamp = (req, res, next) => {
 }
 
 // @description     Delete bootcamp
-// @route           DELETE /api/v1/bootcamps/:id
+// @route           DELETE /api/v1/bootcamp/:id
 // @access          Private
 exports.deleteBootcamp = (req, res, next) => {
   res
