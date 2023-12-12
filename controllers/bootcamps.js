@@ -83,10 +83,10 @@ exports.getBootcampsInRadius = asyncHandler(async (req, res, next) => {
   // Get lat/lng from geocoder
   const loc = await geocoder.geocode(zipcode)
   const lat = loc[0].latitude
-  const lag = loc[0].longitude
+  const lng = loc[0].longitude
 
-  //Calc radius using radians
-  //Divide dist by radius of Earth
+  // Calc radius using radians
+  // Divide dist by radius of Earth
   const radius = distance / 3963
 
   const bootcamps = await Bootcamp.find({

@@ -1,21 +1,27 @@
 const fs = require("fs")
 const mongoose = require("mongoose")
+const dotenv = require("dotenv")
 
-configDotenv.config({ path: "./config/config.env" })
+// Load env vars
+dotenv.config({ path: "./config/config.env" })
 
+// Load models
 const Bootcamp = require("./models/Bootcamp")
 
+// Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
-  // useCreateIndex: true,
-  // useFindAndModify: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
   useUnifiedTopology: true,
 })
 
+// Read JSON files
 const bootcamps = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/bootcamps.json`, "utf8")
+  fs.readFileSync(`${__dirname}/_data/bootcamps.json`, "utf-8")
 )
 
+// Import into DB
 const importData = async () => {
   try {
     await Bootcamp.create(bootcamps)
@@ -27,11 +33,12 @@ const importData = async () => {
   }
 }
 
+// Delete data
 const deleteData = async () => {
   try {
     await Bootcamp.deleteMany()
 
-    console.log("Data Deleted...")
+    console.log("Data Destroyed...")
     process.exit()
   } catch (err) {
     console.error(err)
