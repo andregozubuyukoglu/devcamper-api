@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const slugify = require("slugify")
+const geocoder = require("../utils/geocoder")
 
 const BootcampSchema = new mongoose.Schema(
   {
@@ -100,8 +101,8 @@ const BootcampSchema = new mongoose.Schema(
     },
   },
   {
-    toJSON: { virtuals: "true" },
-    toObject: { virtuals: "true" },
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 )
 
@@ -111,7 +112,7 @@ BootcampSchema.pre("save", function (next) {
   next()
 })
 
-// Geocode create location field
+// Geocode & create location field
 BootcampSchema.pre("save", async function (next) {
   const loc = await geocoder.geocode(this.address)
   this.location = {

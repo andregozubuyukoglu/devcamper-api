@@ -25,7 +25,7 @@ const advancedResults = (model, populate) => async (req, res, next) => {
     query = query.select(fields)
   }
 
-  // sort
+  // Sort
   if (req.query.sort) {
     const sortBy = req.query.sort.split(",").join(" ")
     query = query.sort(sortBy)
@@ -46,6 +46,7 @@ const advancedResults = (model, populate) => async (req, res, next) => {
     query = query.populate(populate)
   }
 
+  // Executing query
   const results = await query
 
   // Pagination result
